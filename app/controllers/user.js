@@ -42,6 +42,28 @@
              return res.send({message:error})
          } 
      }
+
+     loginUser(req,res){
+        try {
+            const loginDetails = {
+                email: req.body.email,
+                password: req.body.password
+            }    
+            userService.loginUser(loginDetails,(error,data)=>{
+                error ? 
+                    res.status(404).send({
+                        success: false, message: "Please enter correct user credentials"
+                    })
+                :
+                    res.status(200).send({
+                        success: true, message: "User login successfully!", data : data
+                    });
+                }
+                )
+        } catch (error) {
+            return res.send({message:error})
+        }
+    }
 }
  
  module.exports = new User()
