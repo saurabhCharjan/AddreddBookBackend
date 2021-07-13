@@ -14,10 +14,10 @@
  **********************************************************************************************************/
 
  module.exports = (app) => {
-    //const user = require('../controllers/user')
-    app.post('/registerUser');
+    const user = require('../controllers/user')
+    
     //Create a new User
-    //app.post('/registerUser', user.registerUser);
+    app.post('/registerUser', user.registerUser);
 
     //User Login
     //app.post('/login',user.loginUser);
