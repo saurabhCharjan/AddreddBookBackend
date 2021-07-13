@@ -32,8 +32,8 @@
      res.json({"message": "Welcome to AddressBook application."});
  });
  
- // Require AddressBook routes
- //require('./app/routes/routes')(app);
+ //Require AddressBook routes
+ require('./app/routes/routes')(app);
  
  // listen for requests
  app.listen(3000, () => {
