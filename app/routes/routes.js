@@ -20,5 +20,5 @@
     app.post('/registerUser', user.registerUser);
 
     //User Login
-    //app.post('/login',user.loginUser);
+    app.post('/login',user.loginUser);
 }

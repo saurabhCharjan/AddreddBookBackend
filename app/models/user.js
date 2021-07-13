@@ -72,8 +72,29 @@
                 
              } catch (error) {
                  return callBack(error,null)
-             }
-     }
+        }
+    }
+
+    loginUser(loginDetails,callBack){
+        try {
+            UserModel.findOne({email: loginDetails.email},(error,data)=>{
+                if(error){
+                    callBack(error,null)
+                }
+                if(!data){
+                    callBack("User not found please enter valid credential",null)
+                }
+                if(data.password==loginDetails.password){
+                    callBack(null,data)
+                }
+                else{
+                    callBack("Please enter valid password",null)
+                }
+            })
+        } catch (error) {
+            return callBack(error,null)
+        }
+    }
  
  }
  module.exports = new UsersModule()
