@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const urlDB = 'mongodb://localhost:27017/AddressBook'
+require('dotenv').config();
 module.exports = () =>{
     mongoose.Promise = global.Promise;
 
     // Connecting to the database
-mongoose.connect(urlDB, {
+mongoose.connect(process.env.MONGODB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

@@ -15,33 +15,41 @@
  **********************************************************************************************************/
 
  const userService = require('../service/user')
-
+ const {userSchema} = require('../middlewares/userValidation')
  class User {
  
-     registerUser(req,res){
-         try {
+    registerUser(req,res){
+        try {
             const userData = {
-                 firstName : req.body.firstName,
-                 lastName : req.body.lastName,
-                 email : req.body.email,
-                 password : req.body.password
-                }
+                firstName : req.body.firstName,
+                lastName : req.body.lastName,
+                email : req.body.email,
+                password : req.body.password
+            }
+
+            const result = userSchema.validate(userData)
+        if(result.error){
+            res.status(422).send({
+                success: false, message: result.error.details[0].message
+            })
+        }
+        else{
             userService.registerUser(userData,(error,data)=>{
-                 error ?
-                     res.status(500).send({
-                         success: false, message: "Some error occurred while registering user"
-                     })
-                 :
-                     res.status(200).send({
-                         success: true, message: "User created successfully!", data: data
-                     });
-                 }
-             )
-         }
-          catch (error) {
-             return res.send({message:error})
-         } 
-     }
+                error ?
+                    res.status(500).send({
+                        success: false, message: "Some error occurred while registering user"
+                    })
+                :
+                    res.status(200).send({
+                        success: true, message: "User created successfully!", token : data
+                    });
+                }
+            )
+        }
+    } catch (error) {
+        return res.send({message:error})
+    } 
+}
 
      loginUser(req,res){
         try {

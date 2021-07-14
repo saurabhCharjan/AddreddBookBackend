@@ -13,6 +13,8 @@
  * @since       : 8-07-2021
  **********************************************************************************************************/
  const mongoose = require('mongoose');
+ const bcrypt = require('bcrypt')
+
 
  const UserSchema = mongoose.Schema({
      firstName: {
@@ -38,6 +40,18 @@
      timestamps: true
  });
 
+//encrypt password using hashing before saving in database
+UserSchema.pre("save", function (next) {
+    const user = this;
+
+    bcrypt.hash(this.password, 10, (error, hashedPassword) => {
+        if (error) {
+            return next(error);
+        }
+        user.password = hashedPassword;
+        next();
+    });
+});
  
  const UserModel = mongoose.model('User', UserSchema);
  
@@ -79,18 +93,11 @@
         try {
             UserModel.findOne({email: loginDetails.email},(error,data)=>{
                 if(error){
-                    callBack(error,null)
+                    return callBack(error,null)
                 }
-                if(!data){
-                    callBack("User not found please enter valid credential",null)
+                return (!data) ? callBack('user not found',null) : callBack(null,data)
                 }
-                if(data.password==loginDetails.password){
-                    callBack(null,data)
-                }
-                else{
-                    callBack("Please enter valid password",null)
-                }
-            })
+            )
         } catch (error) {
             return callBack(error,null)
         }

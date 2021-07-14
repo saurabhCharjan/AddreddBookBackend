@@ -13,7 +13,7 @@
  * @since       : 13-07-2021
  **********************************************************************************************************/
  const userModel = require('../models/user')
-
+ const helper = require('../middlewares/helper')
  class userService{
      registerUser(userData,callBack){
          try {
@@ -28,14 +28,20 @@
      loginUser(loginDetails,callBack){
         try {
             userModel.loginUser(loginDetails,(error,data)=>{
-                if(error){
-                    callBack(error,null)
+                if(error)return callBack(error,null)
+                if(helper.checkPassword(loginDetails.password,data.password)){
+                    const token = helper.generateToken(loginDetails)
+                    if(token){
+                        return callBack(null,token)
+                    }
+                    return callBack(error,null)
                 }else{
-                    callBack(null,data)
+                    return callBack(error,null)
                 }
+                
             })
         } catch (error) {
-            callBack(error,null)
+            return callBack(error,null)
         }
     }
 
