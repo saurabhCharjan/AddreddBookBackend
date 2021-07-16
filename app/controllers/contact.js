@@ -48,5 +48,19 @@ class contact{
             return res.send({message:error})
         }
     }
+
+    getContacts(req,res){
+        contactService.getContacts((error,data)=>{
+            error?
+                res.status(500).send({
+                    success: false, message: "Some error occurred while retriving contacts"
+                })
+            :
+                res.status(200).send({
+                    success: true, message: "Contacts retrived successfully!", data: data
+                });
+            
+        });
+    }
 }
 module.exports = new contact()

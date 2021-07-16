@@ -23,7 +23,16 @@
          } catch (error) {
              return callBack(error,null)
          }
-     }     
+     }
+     
+     getContacts(callBack){
+        contactModel.getContacts((error,data)=>{
+            error?
+                callBack(error,null)
+            :
+                callBack(null,data)
+        })
+     }
  }
  
  module.exports = new contactService()

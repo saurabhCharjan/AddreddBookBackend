@@ -59,9 +59,9 @@
      timestamps: true
  });
  
- const UserModel = mongoose.model('contact', contactSchema);
+ const contactModel = mongoose.model('contact', contactSchema);
  
- class contactModel{
+ class contactsModel{
      /**
       * @description registerUser method is to save the new User Data in database
          * @param userdData is data sent from Services layer
@@ -69,7 +69,7 @@
       */
          createContact(data,callBack){
              try {
-                 const contact = new UserModel({
+                 const contact = new contactModel({
                     firstName:data.firstName,
                     lastName: data.lastName,
                     address:data.address,
@@ -86,6 +86,15 @@
                  return callBack(error,null)
         }
     }
+
+    getContacts(callBack){
+        contactModel.find({},(error,data)=>{
+            error?
+                callBack(error,null)
+            :
+                callBack(null,data)
+        })
+    }
  
  }
- module.exports = new contactModel()
+ module.exports = new contactsModel()

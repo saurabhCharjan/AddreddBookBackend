@@ -24,10 +24,10 @@ const contact = require('../controllers/contact')
     app.post('/login',user.loginUser);
 
     //add new contact in addressbook
-    app.post('/addressbook/addContact', helper.authenticateToken, contact.createContact);
+    app.post('/addressbook/addcontact', helper.authenticateToken, contact.createContact);
 
     //get all contacts in addressbook
-    //app.get('/addressbook/getContacts', helper.authenticateToken, contact.getContacts);
+    app.get('/addressbook/getcontacts', helper.authenticateToken, contact.getContacts);
 
     //get one contact by id
     //app.get('/addressbook/getContact/:contactId', helper.authenticateToken, contact.getContactById);
