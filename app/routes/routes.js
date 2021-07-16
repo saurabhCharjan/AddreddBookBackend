@@ -30,7 +30,7 @@ const contact = require('../controllers/contact')
     app.get('/addressbook/getcontacts', helper.authenticateToken, contact.getContacts);
 
     //get one contact by id
-    //app.get('/addressbook/getContact/:contactId', helper.authenticateToken, contact.getContactById);
+    app.get('/addressbook/getcontact/:contactId', helper.authenticateToken, contact.getContactById);
 
     //update contact details in addressbook
     //app.put('/addressbook/updateContact/:contactId', helper.authenticateToken, contact.updateContact);

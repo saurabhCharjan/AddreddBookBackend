@@ -95,6 +95,15 @@
                 callBack(null,data)
         })
     }
- 
+    
+    getContactById(contactId,callBack){
+        contactModel.findById(contactId.contactId,(error,data)=>{
+            error?
+                callBack(error,null)
+            :
+                callBack(null,data)
+        })
+    }
+
  }
  module.exports = new contactsModel()
