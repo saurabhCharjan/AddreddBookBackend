@@ -51,6 +51,15 @@
                 callBack(null,data)
         })
     }
+
+    removeContact(contactId,callBack){
+        contactModel.removeContact(contactId,(error,data)=>{
+            error?
+                callBack(error,null)
+            :
+                callBack(null,data)
+        })
+    }
  }
  
  module.exports = new contactService()

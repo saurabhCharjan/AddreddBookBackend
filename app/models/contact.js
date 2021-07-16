@@ -123,5 +123,14 @@
         });
     }
 
+    removeContact(contactId,callBack){
+        contactModel.findByIdAndDelete(contactId.contactId,(error,data)=>{
+            error?
+                callBack(error,null)
+            :
+                callBack(null,data)
+        })
+    }
+
  }
  module.exports = new contactsModel()

@@ -36,6 +36,6 @@ const contact = require('../controllers/contact')
     app.put('/addressbook/updatecontact/:contactId', helper.authenticateToken, contact.updateContact);
 
     //delete contact by id
-    //app.delete('/addressbook/deleteContact/:contactId', helper.authenticateToken, contact.removeContact);
+    app.delete('/addressbook/deletecontact/:contactId', helper.authenticateToken, contact.removeContact);
 
     }
