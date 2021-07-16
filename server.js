@@ -16,6 +16,7 @@
  const express = require('express');
  const dbConfig = require('./config/config.js');
  require('dotenv').config();
+ const logger = require('./config/logger')
  
  // create express app
  const app = express();
@@ -40,5 +41,6 @@
  // listen for requests
  app.listen(process.env.PORT, () => {
      console.log("Server is listening on port "+process.env.PORT);
+     logger.info("Server is listening on port "+process.env.PORT);
  });
  

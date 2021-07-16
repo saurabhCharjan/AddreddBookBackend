@@ -14,8 +14,14 @@
  **********************************************************************************************************/
 const helper = require('../middlewares/helper')
 const contact = require('../controllers/contact')
+const user = require('../controllers/user')
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../../swagger/swagger.json');
+
  module.exports = (app) => {
-    const user = require('../controllers/user')
+    
+    app.use('/api-docs', swaggerUi.serve);
+    app.get('/api-docs', swaggerUi.setup(swaggerDocument));
     
     //Create a new User
     app.post('/registerUser', user.registerUser);
@@ -27,7 +33,7 @@ const contact = require('../controllers/contact')
     app.post('/addressbook/addcontact', helper.authenticateToken, contact.createContact);
 
     //get all contacts in addressbook
-    app.get('/addressbook/getcontacts', helper.authenticateToken, contact.getContacts);
+    app.get('/addressbook/getcontact', helper.authenticateToken, contact.getContacts);
 
     //get one contact by id
     app.get('/addressbook/getcontact/:contactId', helper.authenticateToken, contact.getContactById);
