@@ -12,7 +12,8 @@
  * @version     : 1.0
  * @since       : 13-07-2021
  **********************************************************************************************************/
-
+const helper = require('../middlewares/helper')
+const contact = require('../controllers/contact')
  module.exports = (app) => {
     const user = require('../controllers/user')
     
@@ -21,4 +22,20 @@
 
     //User Login
     app.post('/login',user.loginUser);
-}
+
+    //add new contact in addressbook
+    app.post('/addressbook/addContact', helper.authenticateToken, contact.createContact);
+
+    //get all contacts in addressbook
+    //app.get('/addressbook/getContacts', helper.authenticateToken, contact.getContacts);
+
+    //get one contact by id
+    //app.get('/addressbook/getContact/:contactId', helper.authenticateToken, contact.getContactById);
+
+    //update contact details in addressbook
+    //app.put('/addressbook/updateContact/:contactId', helper.authenticateToken, contact.updateContact);
+
+    //delete contact by id
+    //app.delete('/addressbook/deleteContact/:contactId', helper.authenticateToken, contact.removeContact);
+
+    }

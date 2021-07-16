@@ -41,7 +41,7 @@
                     })
                 :
                     res.status(200).send({
-                        success: true, message: "User created successfully!", token : data
+                        success: true, message: "User created successfully!", data : data
                     });
                 }
             )
@@ -64,7 +64,7 @@
                     })
                 :
                     res.status(200).send({
-                        success: true, message: "User login successfully!", data : data
+                        success: true, message: "contact saved successfully!", data : data
                     });
                 }
                 )
