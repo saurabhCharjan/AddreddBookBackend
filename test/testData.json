@@ -1,0 +1,56 @@
+{
+    "userData" : {
+    "firstName" : "Saurabh",
+    "lastName" : "Charjan",
+    "email" : "charja5@gmail.com",
+    "password" : "Batman@2532"
+    },
+    "falseData" : {
+    "firstName" : "Saurabh",
+    "lastName" : "Charjan",
+    "email" : "charjan15@gmail.com",
+    "password" : "Batman532"
+    },
+    "userLogin" : {
+    "email" : "batman2@gmail.com",
+    "password" : "Batman@2532"
+    },
+    "falseLogin" : {
+    "email" : "batman@gmail.com",
+    "password" : "Batman2532"
+    },
+    "contact":{
+        "firstName":"Saurabh",
+    "lastName": "Charjan",
+    "address":"MB town 2 ",
+    "city":"Nagpur",
+    "state":"Maharashtra",
+    "zipCode":"440030",
+    "phoneNumber":"7769886703",
+    "email":"charjan2532@gmail.com"
+    },
+    "updateContact":{
+        "firstName":"Saurabh",
+    "lastName": "Charjan",
+    "address":"MB town 2 ",
+    "city":"Nagpur",
+    "state":"Maharashtra",
+    "zipCode":"440030",
+    "phoneNumber":"7769886703",
+    "email":"charjan25@gmail.com"
+    },
+    "falseContact":{
+        "firstName":"Saurabh",
+    "lastName": "Charjan",
+    "address":"MB town 2 ",
+    "city":"Nagpur",
+    "state":"Maharashtra",
+    "zipCode":"440030",
+    "phoneNumber":"7769886703",
+    "email":"charjan44mail.com"
+    },
+    "falseToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhdG1hbjJAZ21haWwuY29tIiwicGFzc3dvcmQiOiJCYXRtYW5AMjUzMiIsImlhdCI6MTYyNjQ1NjA2Nn0.FcFn86mxCByyBQPVAhQX_lXOMwpJqWlVP"  ,
+    "contactID":"60f1c2619903502bef5f27ce",
+    "falseID": "60f1c2619903502bef5f27",
+    "deleteID":"60f1c680414e252f8d2bef0d"
+}

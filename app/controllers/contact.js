@@ -40,7 +40,7 @@ class contact{
                     })
                 :
                     res.status(200).send({
-                        success: true, message: "User created successfully!", token : data
+                        success: true, message: "User created successfully!", data : data
                     });
             })
             

@@ -64,7 +64,7 @@
                     })
                 :
                     res.status(200).send({
-                        success: true, message: "contact saved successfully!", data : data
+                        success: true, message: "contact saved successfully!", token : data
                     });
                 }
                 )

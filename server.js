@@ -44,3 +44,4 @@
      logger.info("Server is listening on port "+process.env.PORT);
  });
  
+ module.exports = app;

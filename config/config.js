@@ -8,7 +8,7 @@ mongoose.connect(process.env.MONGODB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-    useFindAndModify: true
+    useFindAndModify: false
     }).then(() => {
         console.log("Successfully connected to the database");    
     }).catch(err => {
