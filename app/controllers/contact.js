@@ -77,5 +77,30 @@ class contact{
             
         });
     }
+
+    updateContact(req,res){
+        let contactId = req.params;
+        const contactData = {
+                firstName:req.body.firstName,
+                lastName: req.body.lastName,
+                address:req.body.address,
+                city:req.body.city,
+                state:req.body.state,
+                zipCode:req.body.zipCode,
+                phoneNumber:req.body.phoneNumber,
+                email:req.body.email
+        }  
+        contactService.updateContact(contactId,contactData,(error,data)=>{
+            error?
+                res.status(500).send({
+                    success: false, message: "Some error occurred while updating contact"
+                })
+            :
+                res.status(200).send({
+                    success: true, message: "Contacts updated successfully!", data: data
+                })
+            
+        });
+    }
 }
 module.exports = new contact()

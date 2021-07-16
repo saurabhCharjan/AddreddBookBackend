@@ -42,6 +42,15 @@
                 callBack(null,data)
         })
      }
+
+     updateContact(contactId,contactData,callBack){
+        contactModel.updateContact(contactId,contactData,(error,data)=>{
+            error?
+                callBack(error,null)
+            :
+                callBack(null,data)
+        })
+    }
  }
  
  module.exports = new contactService()

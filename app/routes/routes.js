@@ -33,7 +33,7 @@ const contact = require('../controllers/contact')
     app.get('/addressbook/getcontact/:contactId', helper.authenticateToken, contact.getContactById);
 
     //update contact details in addressbook
-    //app.put('/addressbook/updateContact/:contactId', helper.authenticateToken, contact.updateContact);
+    app.put('/addressbook/updatecontact/:contactId', helper.authenticateToken, contact.updateContact);
 
     //delete contact by id
     //app.delete('/addressbook/deleteContact/:contactId', helper.authenticateToken, contact.removeContact);

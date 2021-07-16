@@ -105,5 +105,23 @@
         })
     }
 
+    updateContact(contactId,data,callBack){
+        contactModel.findByIdAndUpdate(contactId.contactId,{
+            firstName:data.firstName,
+            lastName: data.lastName,
+            address:data.address,
+            city:data.city,
+            state:data.state,
+            zipCode:data.zipCode,
+            phoneNumber:data.phoneNumber,
+            email:data.email
+        },{new : true},(error,data)=>{
+            error?
+                callBack(error,null)
+            :
+                callBack(null,data)
+        });
+    }
+
  }
  module.exports = new contactsModel()
