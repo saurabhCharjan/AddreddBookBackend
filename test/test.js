@@ -65,6 +65,15 @@ describe('POST /login',()=>{
             done();
             });
     });
+    it('should return 404 responce on wrong url',(done)=>{
+        chai.request(server)
+            .post('/loginuser')
+            .send(testData.userLogin)
+            .end((error,res)=>{
+                res.should.have.status(404);
+            done();
+            });
+    });
 });
 
 beforeEach((done) => {
@@ -104,6 +113,17 @@ describe('POST /addressbook/addcontact',()=>{
             done();
             })
     })
+
+    it('should return 404 status code on wrong url',(done)=>{
+        chai.request(server)
+            .post('/addressbook/contact')
+            .send(testData.contact)
+            .set('token',token)
+            .end((error,res)=>{
+                res.should.have.status(404);
+            done();
+            })
+    })
 })
 
 describe('GET /addressbook/getcontact',()=>{
@@ -118,13 +138,23 @@ describe('GET /addressbook/getcontact',()=>{
             })
     })
 
-    it('should give status code 402 for invalid token',(done)=>{
+    it('should give status code 400 for invalid token',(done)=>{
         chai.request(server)
             .get('/addressbook/getcontact')
             .set('token',testData.falseToken)
             .end((error,res)=>{
-                res.should.have.status(402)
+                res.should.have.status(400)
                 res.body.should.have.property('success').eq(false)
+            done()    
+            })
+    })
+
+    it('should return status code 404 on wrong url',(done)=>{
+        chai.request(server)
+            .get('/addressbook/contact')
+            .set('token',token)
+            .end((error,res)=>{
+                res.should.have.status(404)
             done()    
             })
     })
@@ -149,6 +179,16 @@ describe('GET contact by ID /addressbook/getcontact',()=>{
             .end((error,res)=>{
                 res.should.have.status(500)
                 res.body.should.have.property('success').eq(false)
+            done()    
+            })
+    })
+
+    it('should return status code 404 on wrong url',(done)=>{
+        chai.request(server)
+            .get('/addressbook/contact/'+testData.contactID)
+            .set('token',token)
+            .end((error,res)=>{
+                res.should.have.status(404)
             done()    
             })
     })
@@ -178,6 +218,18 @@ describe(' PUT by ID /addressbook/updatecontact/',()=>{
             done()
             })
     })
+
+    it('should give status code 404 on wrong url',(done)=>{
+        chai.request(server)
+            .put('/addressbook/contact/'+testData.contactID)
+            .send(testData.updateContact)
+            .set('token',token)
+            .end((error,res)=>{
+                res.should.have.status(404)
+            done()
+            })
+    })
+
 })
 
 describe('DELETE emp by ID /addressbook/deletecontact/',()=>{
@@ -199,6 +251,16 @@ describe('DELETE emp by ID /addressbook/deletecontact/',()=>{
             .end((error,res)=>{
                 res.should.have.status(500)
                 res.body.should.have.property('success').eq(false)
+            done()    
+            })
+    })
+
+    it('should get status code 404 on wrong url',(done)=>{
+        chai.request(server)
+            .delete('/addressbook/contact/'+testData.deleteID)
+            .set('token',token)
+            .end((error,res)=>{
+                res.should.have.status(404)
             done()    
             })
     })

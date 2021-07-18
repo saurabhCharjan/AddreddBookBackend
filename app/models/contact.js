@@ -86,7 +86,10 @@
                  return callBack(error,null)
         }
     }
-
+/**
+ * retrives all the data from database
+ * @param {*} callBack is used to callback with data or error
+ */
     getContacts(callBack){
         contactModel.find({},(error,data)=>{
             error?
@@ -95,7 +98,11 @@
                 callBack(null,data)
         })
     }
-    
+    /**
+     * retrive the data from database using id
+     * @param {*} contactId the contact we wanr to retrive
+     * @param {*} callBack is used to callback with data or error
+    */
     getContactById(contactId,callBack){
         contactModel.findById(contactId.contactId,(error,data)=>{
             error?
@@ -104,7 +111,12 @@
                 callBack(null,data)
         })
     }
-
+/**
+ * update the data by using id
+ * @param {*} contactId to updaet perticular contact
+ * @param {*} data the data we want to update
+ * @param {*} callBack is used to callback with data or error
+ */
     updateContact(contactId,data,callBack){
         contactModel.findByIdAndUpdate(contactId.contactId,{
             firstName:data.firstName,
@@ -122,7 +134,11 @@
                 callBack(null,data)
         });
     }
-
+/**
+ * to delete pertipular data from database using id
+ * @param {*} contactId to delete perticular data
+ * @param {*} callBack is used to callback with data or error 
+ */
     removeContact(contactId,callBack){
         contactModel.findByIdAndDelete(contactId.contactId,(error,data)=>{
             error?

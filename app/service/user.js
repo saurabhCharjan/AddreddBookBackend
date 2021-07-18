@@ -15,6 +15,12 @@
  const userModel = require('../models/user')
  const helper = require('../middlewares/helper')
  class userService{
+     /**
+      * 
+      * @param {*} userData 
+      * @param {*} callBack 
+      * @returns callback
+      */
      registerUser(userData,callBack){
          try {
              userModel.registerUser(userData,(error,data)=>{
@@ -24,7 +30,12 @@
              return callBack(error,null)
          }
      }
-
+/**
+ * 
+ * @param {*} loginDetails 
+ * @param {*} callBack 
+ * @returns callback
+ */
      loginUser(loginDetails,callBack){
         try {
             userModel.loginUser(loginDetails,(error,data)=>{

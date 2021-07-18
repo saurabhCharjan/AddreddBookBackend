@@ -16,6 +16,12 @@
 const contactService = require('../service/contact')
 const {contactSchema} = require('../middlewares/contactValidation')
 class contact{
+    /**
+     * function to validate request body received from client and call service 
+     * @param {*} req 
+     * @param {*} res 
+     * @returns http status and object
+     */
     createContact(req,res){
         try {
             const contact = {
@@ -28,7 +34,7 @@ class contact{
                 phoneNumber:req.body.phoneNumber,
                 email:req.body.email
             }
-
+            //validates the req body
             const result = contactSchema.validate(contact)
             result.error ?
             res.status(422).send({success: false, message: result.error.details[0].message})
@@ -48,7 +54,11 @@ class contact{
             return res.send({message:error})
         }
     }
-
+/**
+ * function to call the getContacts function of service layer which retrives data from db
+ * @param {*} req 
+ * @param {*} res 
+ */
     getContacts(req,res){
         contactService.getContacts((error,data)=>{
             error?
@@ -62,7 +72,11 @@ class contact{
             
         });
     }
-
+/**
+ * function to call the getContactById function of service to retrive data by id
+ * @param {*} req 
+ * @param {*} res 
+ */
     getContactById(req,res){
         let contactId = req.params;
         contactService.getContactById(contactId,(error,data)=>{
@@ -77,7 +91,11 @@ class contact{
             
         });
     }
-
+/**
+ * function to call the updateContact function that updates the old data
+ * @param {*} req 
+ * @param {*} res 
+ */
     updateContact(req,res){
         let contactId = req.params;
         const contactData = {
@@ -102,7 +120,11 @@ class contact{
             
         });
     }
-
+/**
+ * function to call the deleteEmployee function of service layer that deletes the data by id
+ * @param {*} req 
+ * @param {*} res 
+ */
     removeContact(req,res){
         let contactId = req.params;
         contactService.removeContact(contactId,(error,data)=>{

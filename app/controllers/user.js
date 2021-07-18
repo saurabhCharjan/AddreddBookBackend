@@ -17,7 +17,12 @@
  const userService = require('../service/user')
  const {userSchema} = require('../middlewares/userValidation')
  class User {
- 
+ /**
+  * function to validate req body and call service layer function registerUser to add new user in db
+  * @param {*} req 
+  * @param {*} res 
+  * @returns http status and object
+  */
     registerUser(req,res){
         try {
             const userData = {
@@ -26,7 +31,7 @@
                 email : req.body.email,
                 password : req.body.password
             }
-
+            //validate req body
             const result = userSchema.validate(userData)
         if(result.error){
             res.status(422).send({
@@ -50,7 +55,12 @@
         return res.send({message:error})
     } 
 }
-
+/**
+ * to login user and authenticate
+ * @param {*} req 
+ * @param {*} res 
+ * @returns http code and token
+ */
      loginUser(req,res){
         try {
             const loginDetails = {

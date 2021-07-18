@@ -88,7 +88,12 @@ UserSchema.pre("save", function (next) {
                  return callBack(error,null)
         }
     }
-
+/**
+ *  get the user data by email id
+ * @param {*} loginDetails  having email and password
+ * @param {*} callBack is used to get callback with error or data
+ * @returns 
+ */
     loginUser(loginDetails,callBack){
         try {
             UserModel.findOne({email: loginDetails.email},(error,data)=>{

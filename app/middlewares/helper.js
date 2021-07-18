@@ -17,7 +17,12 @@
  require('dotenv').config();
  
  class Helper{
- 
+    /**
+     * 
+     * @param {*} userPassword 
+     * @param {*} passwordFromDB 
+     * @returns boolean
+     */
      checkPassword(userPassword,passwordFromDB){
          if(bcrypt.compareSync(userPassword,passwordFromDB)){
              return true
@@ -25,7 +30,12 @@
              return false
          }
      }
- 
+
+     /**
+  * Method For Token generation
+  * @param {object} userData data from client/user
+  * @returns token
+  */ 
      generateToken(userData){
          try {
              return jwt.sign(userData, process.env.KEY);
@@ -34,12 +44,19 @@
          }
      }
 
+     /**
+      * 
+      * @param {*} req 
+      * @param {*} res 
+      * @param {*} next 
+      * @returns http status and object
+      */
      authenticateToken(req,res,next){
         let token = req.get("token");
         if(token){
             jwt.verify(token,process.env.KEY,(error)=>{
                 if(error){
-                    return res.status(402).send({
+                    return res.status(400).send({
                         success: false,
                         message: 'Token is not valid', 
                     })
