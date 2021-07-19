@@ -21,13 +21,12 @@
       * @param {*} callBack 
       * @returns callback
       */
-     createContact(contact,callBack){
+     async createContact(contact){
          try {
-             contactModel.createContact(contact,(error,data)=>{
-                 return (error) ? callBack(error,null) : callBack(null,data)
-             })
+             const createContact = await contactModel.createContact(contact) 
+             return createContact;
          } catch (error) {
-             return callBack(error,null)
+             return error;
          }
      }
      /**

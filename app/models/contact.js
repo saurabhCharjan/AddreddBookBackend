@@ -67,7 +67,7 @@
          * @param userdData is data sent from Services layer
          * @return callBack is used to callback Services includes error message or data
       */
-         createContact(data,callBack){
+        async createContact(data){
              try {
                  const contact = new contactModel({
                     firstName:data.firstName,
@@ -79,11 +79,10 @@
                     phoneNumber:data.phoneNumber,
                     email:data.email
                  });
-                 contact.save({},(error,data)=>{
-                 return (error) ? callBack(error,null) : callBack(null,data)
-                 })             
+                 const contactSaved = await contact.save({});
+                return contactSaved;          
              } catch (error) {
-                 return callBack(error,null)
+                 return error
         }
     }
 /**

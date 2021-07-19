@@ -22,7 +22,7 @@ class contact{
      * @param {*} res 
      * @returns http status and object
      */
-    createContact(req,res){
+    async createContact(req,res){
         try {
             const contact = {
                 firstName:req.body.firstName,
@@ -36,22 +36,15 @@ class contact{
             }
             //validates the req body
             const result = contactSchema.validate(contact)
-            result.error ?
-            res.status(422).send({success: false, message: result.error.details[0].message})
-            :
-            contactService.createContact(contact,(error,data)=>{
-                error ?
-                    res.status(500).send({
-                        success: false, message: "Some error occurred while saving the contact"
-                    })
-                :
-                    res.status(200).send({
-                        success: true, message: "User created successfully!", data : data
-                    });
-            })
+            if(result.error){
+            return res.status(422)
+                       .send({success: false, message: result.error.details[0].message})
+            }
+            const createContact = await contactService.createContact(contact)
+            res.send({success: true, message: "Contact created!", data: createContact});
             
         } catch (error) {
-            return res.send({message:error})
+            res.status(500).send({success: false, message: "Some error occurred while creating contact" });
         }
     }
 /**
