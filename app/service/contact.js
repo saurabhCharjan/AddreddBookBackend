@@ -73,12 +73,12 @@
  * @param {*} contactId id for object
  * @param {*} callBack callback
  */
-    removeContact(contactId,callBack){
-        contactModel.removeContact(contactId,(error,data)=>{
-            error?
-                callBack(error,null)
-            :
-                callBack(null,data)
+    removeContact(contactId){
+    return  contactModel.removeContact(contactId)
+         .then(res=>{
+            return res
+        }).catch(error=>{
+            return error
         })
     }
  }

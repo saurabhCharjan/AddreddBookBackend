@@ -138,14 +138,12 @@
  * @param {*} contactId to delete perticular data
  * @param {*} callBack is used to callback with data or error 
  */
-    removeContact(contactId,callBack){
-        contactModel.findByIdAndDelete(contactId.contactId,(error,data)=>{
-            error?
-                callBack(error,null)
-            :
-                callBack(null,data)
+    removeContact(contactId){
+        return contactModel.findByIdAndDelete(contactId.contactId).then(res=>{
+            return res
+        }).catch(error=>{
+            return error
         })
     }
-
  }
  module.exports = new contactsModel()

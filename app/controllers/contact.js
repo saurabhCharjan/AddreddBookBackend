@@ -120,17 +120,17 @@ class contact{
  */
     removeContact(req,res){
         let contactId = req.params;
-        contactService.removeContact(contactId,(error,data)=>{
-            error?
-                res.status(500).send({
-                    success: false, message: "Some error occurred while removing contact"
-                })
-            :
-                res.status(200).send({
-                    success: true, message: "Contact removed successfully!", data: data
-                });
-            
-        });
+
+        contactService.removeContact(contactId)
+        .then(data => {
+            res.status(200).send({
+                  success: true, message: "Contact removed successfully!", data:data
+             });
+        }).catch(error =>{
+            res.status(500).send({
+                success: false, message: "Some error occurred while removing contact"
+            })
+        })       
     }
 }
 module.exports = new contact()
